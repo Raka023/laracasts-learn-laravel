@@ -39,7 +39,7 @@
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
                             <button type="button"
-                                class="relative rounded-full bg-black p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
+                                class="relative rounded-full bg-gray-900 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">View notifications</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -53,7 +53,7 @@
                             <!-- Profile dropdown -->
                             <el-dropdown class="relative ml-3">
                                 <button
-                                    class="relative flex max-w-xs items-center rounded-full bg-black text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+                                    class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black">
                                     <span class="absolute -inset-1.5"></span>
                                     <span class="sr-only">Open user menu</span>
                                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -77,7 +77,7 @@
                     </div>
                     <div class="-mr-2 flex md:hidden">
                         <!-- Mobile menu button -->
-                        <button type="button" command="--toggle" commandfor="mobile-menu" class="relative inline-flex items-center justify-center rounded-md bg-black p-2 text-gray-400 hover:bg-gray-800 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
+                        <button type="button" command="--toggle" commandfor="mobile-menu" class="relative inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
                             <span class="absolute -inset-0.5"></span>
                             <span class="sr-only">Open main menu</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -111,7 +111,7 @@
                             <div class="text-base/5 font-medium text-white">User</div>
                             <div class="text-sm font-medium text-gray-400">user@example.com</div>
                         </div>
-                        <button type="button" class="relative ml-auto shrink-0 rounded-full bg-black p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
+                        <button type="button" class="relative ml-auto shrink-0 rounded-full bg-gray-900 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">View notifications</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -138,10 +138,13 @@
         </nav>
 
         <header class="bg-gray-950 shadow-sm border-y border-gray-800">
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl px-4 py-6 lg:px-8 flex items-center justify-between">
                 <h1 class="text-3xl font-bold tracking-tight text-white">
                     {{ $heading ?? 'Page Heading' }}
                 </h1>
+                @if (request()->is('jobs'))
+                    <x-ui::button href="/jobs/create">Create Job</x-ui::button>
+                @endif
             </div>
         </header>
 

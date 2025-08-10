@@ -22,13 +22,19 @@ Route::get('/jobs/create', function () {
 });
 
 Route::get('/jobs/{id}', function ($id) {
-    return view('job.show', [
+    return view('jobs.show', [
         'job' => Job::find($id)
     ]);
 });
 
 Route::post('/jobs', function () {
-    Job::create(request()->all());
+    $validated = request()->validate([
+        'employer_id' => 'required|integer',
+        'title' => 'required|min:3|max:128|string',
+        'salary' => 'required',
+    ]);
+
+    Job::create($validated);
 
     return redirect('/jobs');
 });
