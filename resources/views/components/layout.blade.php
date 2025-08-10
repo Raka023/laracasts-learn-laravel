@@ -143,7 +143,7 @@
                     {{ $heading ?? 'Page Heading' }}
                 </h1>
                 @if (request()->is('jobs'))
-                    <x-ui::button href="/jobs/create">Create Job</x-ui::button>
+                    <x-ui.button href="/jobs/create">Create Job</x-ui.button>
                 @endif
             </div>
         </header>

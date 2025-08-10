@@ -38,6 +38,35 @@ Route::post('/jobs', function () {
 
     return redirect('/jobs');
 });
+
+Route::get('/jobs/{id}/edit', function ($id) {
+    return view('jobs.edit', [
+        'job' => Job::find($id)
+    ]);
+});
+
+Route::patch('/jobs/{id}', function ($id) {
+    $validated = request()->validate([
+        'employer_id' => 'required|integer',
+        'title' => 'required|min:3|max:128|string',
+        'salary' => 'required',
+    ]);
+
+    $job = Job::findOrFail($id);
+
+    $job->update([
+        'title' => $validated['title'],
+        'salary' => $validated['salary'],
+    ]);
+
+    return redirect("/jobs/{$job->id}");
+});
+
+Route::delete('/jobs/{id}', function ($id) {
+    Job::findOrFail($id)->delete();
+    // Job::destroy($id);
+    return redirect('/jobs');
+});
 //
 
 Route::get('/contact', function () {
