@@ -17,10 +17,7 @@ class Job extends Model
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'title',
-        'salary',
-    ];
+    protected $guarded = [];
 
     public function employer()
     {
