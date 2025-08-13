@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout.home>
     <x-slot:heading>Job Info</x-slot:heading>
 
     <h1 class="font-semibold text-white text-2xl mb-4">{{ $job->title }}</h1>
@@ -8,4 +8,5 @@
     <div class="mt-4 flex justify-end gap-3">
         <x-ui.button href="/jobs/{{ $job->id }}/edit" class="text-sm">Edit Job</x-ui.button>
     </div>
-</x-layout>
+
+</x-layout.home>

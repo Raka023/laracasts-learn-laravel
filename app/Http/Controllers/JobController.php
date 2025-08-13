@@ -28,15 +28,15 @@ class JobController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $validated = request()->validate([
+        $request->validate([
             'employer_id' => 'required|integer',
             'title' => 'required|min:3|max:128|string',
             'salary' => 'required',
         ]);
 
-        Job::create($validated);
+        Job::create($request);
 
         return redirect('/jobs');
     }
@@ -48,17 +48,17 @@ class JobController extends Controller
         ]);
     }
 
-    public function update(Job $job)
+    public function update(Job $job, Request $request)
     {
-        $validated = request()->validate([
+        $request()->validate([
             'employer_id' => 'required|integer',
             'title' => 'required|min:3|max:128|string',
             'salary' => 'required',
         ]);
 
         $job->update([
-            'title' => $validated['title'],
-            'salary' => $validated['salary'],
+            'title' => $request->title,
+            'salary' => $request->salary,
         ]);
 
         return redirect("/jobs/{$job->id}");

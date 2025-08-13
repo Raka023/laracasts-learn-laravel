@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full dark" data-theme="dark">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
-    <!-- Styles / Scripts -->
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
-</head>
-
-<body class="h-full bg-gray-950">
+<x-partial class="">
     <div class="min-h-full">
 
         <nav class="bg-gray-950">
@@ -25,54 +6,63 @@
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center">
                         <div class="shrink-0">
-                            <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=blue&shade=500" alt="Your Company" class="size-8" />
+                            <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=blue&shade=400" alt="Your Company" class="size-8" />
                         </div>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                                <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                                <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
-                                <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                                <x-ui.nav-link href="/" :active="request()->is('/')">Home</x-ui.nav-link>
+                                <x-ui.nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-ui.nav-link>
+                                <x-ui.nav-link href="/contact" :active="request()->is('contact')">Contact</x-ui.nav-link>
                             </div>
                         </div>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
-                            <button type="button"
-                                class="relative rounded-full bg-gray-900 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
-                                <span class="absolute -inset-1.5"></span>
-                                <span class="sr-only">View notifications</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                    data-slot="icon" aria-hidden="true" class="size-6">
-                                    <path
-                                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
+                            @guest
+                                <div class="flex gap-4">
+                                    <a href="{{ route('login') }}" class="px-4 py-1.5 border-1 font-semibold bg-gray-900/50 border-gray-700 rounded-md text-sm text-white hover:border-gray-600 hover:bg-gray-800/50 transition">Login</a>
+                                    <a href="{{ route('register') }}" class="px-4 py-1.5 font-semibold rounded-md text-sm text-white bg-sky-500 hover:bg-sky-400 transition">Register</a>
+                                </div>
+                            @endguest
 
-                            <!-- Profile dropdown -->
-                            <el-dropdown class="relative ml-3">
-                                <button
-                                    class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+                            @auth 
+                                <button type="button"
+                                    class="relative rounded-full bg-gray-900 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black focus:outline-hidden">
                                     <span class="absolute -inset-1.5"></span>
-                                    <span class="sr-only">Open user menu</span>
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        alt="" class="size-8 rounded-full" />
+                                    <span class="sr-only">View notifications</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        data-slot="icon" aria-hidden="true" class="size-6">
+                                        <path
+                                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
                                 </button>
-
-                                <el-menu anchor="bottom end" popover
-                                    class="w-48 origin-top-right rounded-md bg-gray-800 py-1 shadow-lg ring-1 ring-gray-600/50 transition transition-discrete [--anchor-gap:--spacing(2)] focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-                                    <a href="#"
-                                       class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:outline-hidden"
-                                    >Your Profile</a>
-                                    <a href="#"
-                                       class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:outline-hidden"
-                                    >Settings</a>
-                                    <a href="#"
-                                       class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:outline-hidden"
-                                    >Sign out</a>
-                                </el-menu>
-                            </el-dropdown>
+        
+                                <!-- Profile dropdown -->
+                                <el-dropdown class="relative ml-3">
+                                    <button
+                                        class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+                                        <span class="absolute -inset-1.5"></span>
+                                        <span class="sr-only">Open user menu</span>
+                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                            alt="" class="size-8 rounded-full" />
+                                    </button>
+        
+                                    <el-menu anchor="bottom end" popover
+                                        class="w-48 origin-top-right rounded-md bg-gray-800 py-1 shadow-lg ring-1 ring-gray-600/50 transition transition-discrete [--anchor-gap:--spacing(2)] focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:outline-hidden"
+                                        >Your Profile</a>
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:outline-hidden"
+                                        >Settings</a>
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:outline-hidden"
+                                        >Sign out</a>
+                                    </el-menu>
+                                </el-dropdown>
+                            @endauth
                         </div>
                     </div>
                     <div class="-mr-2 flex md:hidden">
@@ -93,13 +83,13 @@
                     </div>
                 </div>
             </div>
-
+    
             <el-disclosure id="mobile-menu" class="block md:hidden">
                 <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <x-nav-link href="/" :active="request()->is('/')" ui="mobile">Home</x-nav-link>
-                    <x-nav-link href="/jobs" :active="request()->is('jobs')" ui="mobile">Jobs</x-nav-link>
-                    <x-nav-link href="/contact" :active="request()->is('contact')" ui="mobile">Contact</x-nav-link>
+                    <x-ui.nav-link href="/" :active="request()->is('/')" ui="mobile">Home</x-ui.nav-link>
+                    <x-ui.nav-link href="/jobs" :active="request()->is('jobs')" ui="mobile">Jobs</x-ui.nav-link>
+                    <x-ui.nav-link href="/contact" :active="request()->is('contact')" ui="mobile">Contact</x-ui.nav-link>
                 </div>
                 <div class="border-t border-gray-700 pt-4 pb-3">
                     <div class="flex items-center px-5">
@@ -124,19 +114,19 @@
                     </div>
                     <div class="mt-3 space-y-1 px-2">
                         <a href="#"
-                           class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                         >Your Profile</a>
                         <a href="#"
-                           class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                         >Settings</a>
                         <a href="#"
-                           class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                         >Sign out</a>
                     </div>
                 </div>
             </el-disclosure>
         </nav>
-
+    
         <header class="bg-gray-950 shadow-sm border-y border-gray-800">
             <div class="mx-auto max-w-7xl px-4 py-6 lg:px-8 flex items-center justify-between">
                 <h1 class="text-3xl font-bold tracking-tight text-white">
@@ -147,14 +137,12 @@
                 @endif
             </div>
         </header>
-
+    
         <main class="bg-gray-950">
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 {{ $slot }}
             </div>
         </main>
-
+        
     </div>
-</body>
-
-</html>
+</x-partial>

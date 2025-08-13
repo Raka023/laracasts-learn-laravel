@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout.home>
     <x-slot:heading>Job Listings</x-slot:heading>
 
     @if ($jobs->isEmpty())
@@ -20,4 +20,4 @@
         </div>
     </div>
 
-</x-layout>
+</x-layout.home>

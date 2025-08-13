@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout.home>
     <x-slot:heading>Edit Job : {{ $job->title }}</x-slot:heading>
 
     <form method="POST" action="/jobs/{{ $job->id }}" novalidate>
@@ -61,4 +61,4 @@
         @method('DELETE')
     </form>
 
-</x-layout>
+</x-layout.home>

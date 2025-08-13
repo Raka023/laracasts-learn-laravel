@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout.home>
     <x-slot:heading>Create Job</x-slot:heading>
 
     <form method="POST" action="/jobs" novalidate>
@@ -54,4 +54,4 @@
         </div>
     </form>
 
-</x-layout>
+</x-layout.home>
