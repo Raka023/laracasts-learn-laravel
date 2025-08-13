@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisteredUserController extends Controller
 {
@@ -15,10 +17,18 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
            'name' => 'required|min:3|string', 
-           'email' => 'required|email|unique:users',
+           'email' => 'required|max:255|email|unique:users',
            'password' => 'required|confirmed|min:6',
         ]);
 
-        dd($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('jobs.index');
     }
 }

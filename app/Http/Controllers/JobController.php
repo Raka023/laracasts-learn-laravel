@@ -38,7 +38,7 @@ class JobController extends Controller
 
         Job::create($request);
 
-        return redirect('/jobs');
+        return redirect()->route('jobs.index');
     }
 
     public function edit(Job $job)
@@ -50,7 +50,7 @@ class JobController extends Controller
 
     public function update(Job $job, Request $request)
     {
-        $request()->validate([
+        $request->validate([
             'employer_id' => 'required|integer',
             'title' => 'required|min:3|max:128|string',
             'salary' => 'required',
@@ -68,6 +68,6 @@ class JobController extends Controller
     {
         $job->delete();
         // Job::destroy($id);
-        return redirect('/jobs');
+        return redirect()->route('jobs.index');
     }
 }

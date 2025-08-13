@@ -12,6 +12,7 @@ Route::get('/register', [ RegisteredUserController::class, 'create' ])->name('re
 Route::post('/register', [ RegisteredUserController::class, 'store' ]);
 Route::get('/login', [ SessionController::class, 'create' ])->name('login');
 Route::post('/login', [ SessionController::class, 'store' ]);
+Route::post('/logout', [ SessionController::class, 'destroy' ])->name('logout');
 
 // Jobs Routes
 Route::controller(JobController::class)->group(function () {
@@ -21,7 +22,7 @@ Route::controller(JobController::class)->group(function () {
     Route::get('/jobs/{job}/edit', 'edit' )->name('jobs.edit');
     Route::post('/jobs', 'store' );
     Route::patch('/jobs/{job}', 'update' );
-    Route::delete('/jobs/{job}', 'delete' );
+    Route::delete('/jobs/{job}', 'destroy' );
 });
 //
 
