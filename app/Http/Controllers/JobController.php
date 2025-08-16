@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Job;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+use App\Models\Job;
+use App\Mail\JobPosted;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -38,11 +38,13 @@ class JobController extends Controller
             'salary' => 'required',
         ]);
 
-        Job::create([
+        $job = Job::create([
             'employer_id' => User::first()->id,
             'title' => $request->title,
             'salary' => $request->salary,
         ]);
+
+        Mail::to($job->employer->user)->send(new JobPosted($job));
 
         return to_route('jobs.index');
     }

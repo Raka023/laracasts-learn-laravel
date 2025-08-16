@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory()->create();
 
-        Job::factory(25)->create();
+        Job::factory(10)->create();
 
-        Tag::factory(50)->create();
+        Tag::factory(15)->create();
     }
 }
