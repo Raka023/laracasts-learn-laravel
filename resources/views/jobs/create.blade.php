@@ -3,7 +3,6 @@
 
     <form method="POST" action="/jobs" novalidate>
         @csrf
-        <input type="hidden" name="employer_id" value="1">
         <div class="space-y-12">
             <div class="border-white/10 pb-12">
                 <h2 class="text-base/7 font-semibold text-white">Create a new job</h2>

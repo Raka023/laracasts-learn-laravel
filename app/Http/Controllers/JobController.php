@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -31,12 +34,15 @@ class JobController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'employer_id' => 'required|integer',
             'title' => 'required|min:3|max:128|string',
             'salary' => 'required',
         ]);
 
-        Job::create($request);
+        Job::create([
+            'employer_id' => User::first()->id,
+            'title' => $request->title,
+            'salary' => $request->salary,
+        ]);
 
         return to_route('jobs.index');
     }

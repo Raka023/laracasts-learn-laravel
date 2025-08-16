@@ -5,8 +5,10 @@
 
     <p class="text-gray-300">Pays {{ $job->salary }} per month</p>
 
-    <div class="mt-4 flex justify-end gap-3">
-        <x-ui.button href="/jobs/{{ $job->id }}/edit" class="text-sm">Edit Job</x-ui.button>
-    </div>
+    @can('edit', $job)
+        <div class="mt-4 flex justify-end gap-3">
+            <x-ui.button href="/jobs/{{ $job->id }}/edit" class="text-sm">Edit Job</x-ui.button>
+        </div>
+    @endcan
 
 </x-layout.home>
