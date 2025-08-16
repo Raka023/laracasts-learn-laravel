@@ -19,7 +19,7 @@ Route::post('/logout', [ SessionController::class, 'destroy' ])->name('logout');
 // Jobs Routes
 Route::controller(JobController::class)->group(function () {
     Route::get('/jobs', 'index' )->name('jobs.index');
-    Route::get('/jobs/create', 'create' )->name('jobs.create');
+    Route::get('/jobs/create', 'create' )->name('jobs.create')->middleware('auth');
     Route::get('/jobs/{job:id}', 'show' )->name('jobs.show');
     Route::get('/jobs/{job}/edit', 'edit' )->name('jobs.edit')->middleware('auth')->can('edit', 'job');
     Route::post('/jobs', 'store' )->middleware('auth');

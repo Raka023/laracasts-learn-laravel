@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Job;
 use App\Mail\JobPosted;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
@@ -39,7 +40,7 @@ class JobController extends Controller
         ]);
 
         $job = Job::create([
-            'employer_id' => User::first()->id,
+            'employer_id' => Auth::user()->employer->id,
             'title' => $request->title,
             'salary' => $request->salary,
         ]);

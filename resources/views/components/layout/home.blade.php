@@ -143,9 +143,11 @@
                 <h1 class="text-3xl font-bold tracking-tight text-white">
                     {{ $heading ?? 'Page Heading' }}
                 </h1>
-                @if (request()->is('jobs'))
-                    <x-ui.button href="/jobs/create">Create Job</x-ui.button>
-                @endif
+                @auth                    
+                    @if (request()->is('jobs'))
+                        <x-ui.button href="/jobs/create">Create Job</x-ui.button>
+                    @endif
+                @endauth
             </div>
         </header>
     

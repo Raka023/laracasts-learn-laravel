@@ -49,7 +49,7 @@
             >Cancel</a>
             <button type="submit"
                 class="rounded-md bg-sky-500 px-3 py-2 text-sm font-semibold text-white hover:bg-sky-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 cursor-pointer"
-            >Save</button>
+            >Add Job</button>
         </div>
     </form>
 
