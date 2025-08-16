@@ -38,7 +38,7 @@ class JobController extends Controller
 
         Job::create($request);
 
-        return redirect()->route('jobs.index');
+        return to_route('jobs.index');
     }
 
     public function edit(Job $job)
@@ -67,7 +67,8 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         $job->delete();
-        // Job::destroy($id);
-        return redirect()->route('jobs.index');
+        // Job::destroy($job->id);
+
+        return to_route('jobs.index');
     }
 }

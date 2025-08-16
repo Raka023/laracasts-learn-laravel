@@ -32,13 +32,13 @@ class SessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('jobs.index');
+        return to_route('jobs.index');
     }
 
     public function destroy()
     {
         Auth::logout();
 
-        return redirect()->route('home');
+        return to_route('jobs.index');
     }
 }

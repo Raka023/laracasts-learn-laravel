@@ -98,9 +98,9 @@
             <div id="mobile-menu" class="block md:hidden" x-show="openMobile" x-transition.origin.top>
                 <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <x-ui.nav-link href="/" :active="request()->is('/')" ui="mobile">Home</x-ui.nav-link>
-                    <x-ui.nav-link href="/jobs" :active="request()->is('jobs')" ui="mobile">Jobs</x-ui.nav-link>
-                    <x-ui.nav-link href="/contact" :active="request()->is('contact')" ui="mobile">Contact</x-ui.nav-link>
+                    <x-ui.nav-link href="{{ route('home') }}" :active="request()->is('/')" ui="mobile">Home</x-ui.nav-link>
+                    <x-ui.nav-link href="{{ route('jobs.index') }}" :active="request()->is('jobs')" ui="mobile">Jobs</x-ui.nav-link>
+                    <x-ui.nav-link href="{{ route('contact') }}" :active="request()->is('contact')" ui="mobile">Contact</x-ui.nav-link>
                 </div>
                 <div class="border-t border-gray-700 pt-4 pb-3">
                     <div class="flex items-center px-5">

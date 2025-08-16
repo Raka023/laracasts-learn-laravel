@@ -28,7 +28,7 @@ Route::controller(JobController::class)->group(function () {
 
 // Route::resource('jobs', JobController::class, [
 //     'only' => ['index', 'create', 'show', 'edit', 'store', 'update', 'destroy'],
-//     // 'except' => ['index', 'create', 'show', 'edit', 'store', 'update', 'destroy'],
+//     'except' => ['index', 'create', 'show', 'edit', 'store', 'update', 'destroy'],
 // ]);
 
 Route::view('/contact', 'contact')->name('contact');

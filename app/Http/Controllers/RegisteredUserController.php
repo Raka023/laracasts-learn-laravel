@@ -24,11 +24,11 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => $request->password,
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('jobs.index');
+        return to_route('jobs.index');
     }
 }
