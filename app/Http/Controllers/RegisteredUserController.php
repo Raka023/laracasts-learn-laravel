@@ -19,12 +19,17 @@ class RegisteredUserController extends Controller
            'name' => 'required|min:3|string', 
            'email' => 'required|max:255|email|unique:users',
            'password' => 'required|confirmed|min:6',
+           'employer' => 'required',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+        ]);
+
+        $user->employer()->create([
+            'name' => $request->employer,
         ]);
 
         Auth::login($user);

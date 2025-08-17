@@ -12,7 +12,7 @@
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                                 <x-ui.nav-link href="/" :active="request()->is('/')">Home</x-ui.nav-link>
-                                <x-ui.nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-ui.nav-link>
+                                <x-ui.nav-link href="/jobs" :active="request()->is('jobs') || request()->is('jobs/*')">Jobs</x-ui.nav-link>
                                 <x-ui.nav-link href="/contact" :active="request()->is('contact')">Contact</x-ui.nav-link>
                             </div>
                         </div>
@@ -67,6 +67,7 @@
                                         >Settings</a>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="submit" role="menuitem" @click="open = false"
                                                 class="block px-4 py-2 w-full text-sm text-left text-gray-300 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:outline-hidden cursor-pointer"
                                             >Sign out</button>

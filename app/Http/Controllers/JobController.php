@@ -38,8 +38,7 @@ class JobController extends Controller
             'salary' => 'required',
         ]);
 
-        $job = Job::create([
-            'employer_id' => Auth::user()->employer->id,
+        $job = Auth::user()->employer->jobs()->create([
             'title' => $request->title,
             'salary' => $request->salary,
         ]);
@@ -75,7 +74,6 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         $job->delete();
-        // Job::destroy($job->id);
 
         return to_route('jobs.index');
     }
